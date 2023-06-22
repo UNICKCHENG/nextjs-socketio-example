@@ -11,7 +11,9 @@ export default function SocketHandler(req: NextApiRequest, res: NextApiResponseS
     return;
   }
 
-  const io = new Server(res.socket.server);
+  const io = new Server(res.socket.server, {
+    addTrailingSlash: false
+  });
   res.socket.server.io = io;
   // Define actions inside
   io.on("connection", (socket) => {
